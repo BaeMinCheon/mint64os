@@ -1,3 +1,6 @@
+
+## ignores for C/CPP
+
 # Prerequisites
 *.d
 
@@ -30,3 +33,11 @@
 *.exe
 *.out
 *.app
+
+## ignores for the boot loader
+
+# boot-loader.bin
+*.bin
+
+# disk.img
+*.img
