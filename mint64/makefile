@@ -8,9 +8,9 @@ build-boot-loader:
 
 build-disk.img: 00-boot-loader/boot-loader.bin
 	@echo [Starting to build the disk.img...]
-	cp 00-boot-loader/boot-loader.bin disk.img
+	copy 00-boot-loader/boot-loader.bin disk.img
 	@echo [Finished to build the disk.img...]
 
 clean:
 	mingw32-make -C 00-boot-loader clean
-	rm -f disk.img
+	del disk.img
