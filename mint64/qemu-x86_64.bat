@@ -1,1 +1,1 @@
-qemu-system-x86_64.exe disk.img
+qemu-system-x86_64.exe -drive file=disk.img,if=floppy
