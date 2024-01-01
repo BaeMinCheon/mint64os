@@ -1,0 +1,1 @@
+qemu-system-x86_64.exe -blockdev driver=file,node-name=fda,filename=disk.img -device floppy,drive=fda,drive-type=144
