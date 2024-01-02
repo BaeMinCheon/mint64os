@@ -34,7 +34,7 @@
 *.out
 *.app
 
-## ignores for the boot loader
+## ignores for mint os
 
 # boot-loader.bin
 *.bin
