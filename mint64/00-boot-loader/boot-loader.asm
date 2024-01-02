@@ -1,38 +1,35 @@
 
-[ORG 0x00]
-[BITS 16]
-
-SECTION .text
+section .text
 
 jmp 0x07C0: START
 
 START:
-    mov ax, 0x07C0
+    mov ax, cs
     mov ds, ax
     mov ax, 0xB800
     mov es, ax
     mov ax, 0x0000
     mov ss, ax
     mov sp, 0xFFFE
-    mov bp, 0xFFFE
+    mov bp, sp
     mov si, 0
 
 .SCREENCLEARLOOP:
-    mov byte [ es : si ], 0
-    mov byte [ es : si+1 ], 0x0A
+    mov byte [ es: si ], 0
+    mov byte [ es: si + 1 ], 0x0A
     add si, 2
-    cmp si, 80*25*2
+    cmp si, 80 * 25 * 2
     jl .SCREENCLEARLOOP
     push MESSAGE1
     push 0
     push 0
     call PRINTMESSAGE
-    add sp, 6
+    add sp, 3 * 2
     push IMAGELOADINGMESSAGE
     push 1
     push 0
     call PRINTMESSAGE
-    add sp, 6
+    add sp, 3 * 2
 
 RESETDISK:
     mov ax, 0
@@ -61,7 +58,7 @@ READDATA:
     mov al, byte [ SECTORNUMBER ]
     add al, 0x01
     mov byte [ SECTORNUMBER ], al
-    cmp al, 19
+    cmp al, 18 + 1
     jl READDATA
     xor byte [ HEADNUMBER ], 0x01
     mov byte [ SECTORNUMBER ], 0x01
@@ -75,8 +72,8 @@ READEND:
     push 2
     push 0
     call PRINTMESSAGE
-    add sp, 6
-    jmp 0x1000:0x0000
+    add sp, 3 * 2
+    jmp 0x1000: 0x0000
 
 HANDLEDISKERROR:
     push DISKERRORMESSAGE
@@ -97,7 +94,7 @@ PRINTMESSAGE:
     mov ax, 0xB800
     mov es, ax
     mov ax, word [ bp + 6 ]
-    mov si, 160
+    mov si, 80 * 2
     mul si
     mov di, ax
     mov ax, word [ bp + 4 ]
@@ -110,7 +107,7 @@ PRINTMESSAGE:
     mov cl, byte [ si ]
     cmp cl, 0
     je .MESSAGEEND
-    mov byte [ es : di ], cl
+    mov byte [ es: di ], cl
     add si, 1
     add di, 2
     jmp .MESSAGELOOP
@@ -134,6 +131,6 @@ SECTORNUMBER: db 0x02
 HEADNUMBER: db 0x00
 TRACKNUMBER: db 0x00
 
-times 510 - ($-$$) db 0x00
+times 510 - ($ - $$) db 0x00
 db 0x55
 db 0xAA
