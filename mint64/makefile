@@ -13,7 +13,7 @@ kernel-32:
 
 build-disk-image: build-boot-loader kernel-32
 	@echo [Starting to build the disk image...]
-	copy 00-boot-loader\boot-loader.bin + 01-kernel-32\virtual-operating-system.bin disk.img
+	cat 00-boot-loader/boot-loader.bin 01-kernel-32/virtual-operating-system.bin > disk.img
 	@echo [Finished to build the disk image]
 
 clean:
