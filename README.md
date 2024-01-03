@@ -15,4 +15,3 @@ Make my own operating system based on the repository https://github.com/kkamagui
 
 # Notices
 - You can use `make` with the name of `mingw32-make` from the command prompt. If you want to use `make` itself, you should create [a link for it](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink).
-- Especially for the command `cat` used in makefile, you should use `Git Bash` for terminal in `Visual Studio Code`. Check [this document](https://code.visualstudio.com/docs/terminal/basics) so that you can change the type of terminal.
