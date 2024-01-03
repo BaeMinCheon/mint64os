@@ -1,8 +1,8 @@
 
-all: virtual-operating-system.bin
+all: kernel-32.bin
 
-virtual-operating-system.bin: virtual-operating-system.asm
-	nasm -o virtual-operating-system.bin virtual-operating-system.asm
+kernel-32.bin: source/entry-point.asm
+	nasm -o kernel-32.bin source/entry-point.asm
 
 clean:
-	del virtual-operating-system.bin
+	del kernel-32.bin

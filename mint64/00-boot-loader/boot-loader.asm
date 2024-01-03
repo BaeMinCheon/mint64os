@@ -3,6 +3,15 @@ section .text
 
 jmp 0x07C0: START
 
+MESSAGE1: db '[Starting Mint64 OS boot loader...]', 0
+DISKERRORMESSAGE: db '[Error with disk operations]', 0
+IMAGELOADINGMESSAGE: db '[Starting to load the operating system image...]', 0
+IMAGELOADINGCOMPLETEMESSAGE: db '[Finished to load the operating system image]', 0
+TOTALSECTORCOUNT: dw 0x01
+SECTORNUMBER: db 0x02
+HEADNUMBER: db 0x00
+TRACKNUMBER: db 0x00
+
 START:
     mov ax, cs
     mov ds, ax
@@ -121,15 +130,6 @@ PRINTMESSAGE:
     pop es
     pop bp
     ret
-
-MESSAGE1: db '[Starting Mint64 OS boot loader...]', 0
-DISKERRORMESSAGE: db '[Error with disk operations]', 0
-IMAGELOADINGMESSAGE: db '[Starting to load the operating system image...]', 0
-IMAGELOADINGCOMPLETEMESSAGE: db '[Finished to load the operating system image]', 0
-TOTALSECTORCOUNT: dw 1024
-SECTORNUMBER: db 0x02
-HEADNUMBER: db 0x00
-TRACKNUMBER: db 0x00
 
 times 510 - ($ - $$) db 0x00
 db 0x55
