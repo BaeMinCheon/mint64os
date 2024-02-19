@@ -20,6 +20,13 @@ build-disk-image: build-boot-loader kernel-32
 	@echo.
 
 clean:
+	@echo [Starting to delete the boot-loader...]
 	mingw32-make -C 00-boot-loader clean
+	@echo [Finished to delete the boot-loader...]
+	@echo.
+
+	@echo [Starting to delete the kernel image...]
 	mingw32-make -C 01-kernel-32 clean
 	del disk.img
+	@echo [Finished to delete the kernel image...]
+	@echo.
